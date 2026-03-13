@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteRepositoryImpl implements ClienteRepository {
 
@@ -95,6 +97,33 @@ public class ClienteRepositoryImpl implements ClienteRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    @Override
+    public List<Cliente> obtenerTodosLosClientes() {
+        String query = "SELECT id_cliente, nombre, email FROM clientes";
+        List<Cliente> clientes = new ArrayList<>();
+
+        try (
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query)
+            ) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Cliente cliente = new Cliente(
+                    resultSet.getInt("id_cliente"),
+                    resultSet.getString("nombre"),
+                    resultSet.getString("email")
+                );
+                clientes.add(cliente);
+            }
+            return clientes;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }

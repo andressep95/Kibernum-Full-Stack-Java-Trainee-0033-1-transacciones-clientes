@@ -4,6 +4,8 @@ import cl.example.model.Cliente;
 import cl.example.repository.implementation.ClienteRepositoryImpl;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClienteRepositoryImplTest {
@@ -45,6 +47,15 @@ class ClienteRepositoryImplTest {
     @Test
     void eliminarCliente() {
         clienteRepository.eliminarCliente(3);
+    }
 
+    @Test
+    void listarTodosLosClientes() {
+        List<Cliente> clientes = clienteRepository.obtenerTodosLosClientes();
+        for (Cliente c : clientes) {
+            System.out.println("ID: " + c.getClienteId() + ", Nombre: " + c.getNombre() + ", Email: " + c.getEmail());
+        }
+
+        assertNotNull(clientes);
     }
 }

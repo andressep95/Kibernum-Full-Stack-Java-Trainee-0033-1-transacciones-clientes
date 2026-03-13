@@ -68,7 +68,7 @@ public class TransaccionRepositoryImpl implements TransaccionRepository {
             preparedStatement.setInt(1, clienteId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Transaccion transaccion = new Transaccion(
                     resultSet.getInt("id_transaccion"),
                     resultSet.getInt("id_cliente"),

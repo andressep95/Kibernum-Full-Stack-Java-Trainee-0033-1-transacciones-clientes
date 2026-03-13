@@ -1,6 +1,7 @@
 package cl.example.repository;
 
 import cl.example.model.Cliente;
+import cl.example.repository.implementation.ClienteRepositoryImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

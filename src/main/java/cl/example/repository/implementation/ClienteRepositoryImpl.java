@@ -1,7 +1,8 @@
-package cl.example.repository;
+package cl.example.repository.implementation;
 
 import cl.example.configuration.DatabaseConnection;
 import cl.example.model.Cliente;
+import cl.example.repository.ClienteRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
